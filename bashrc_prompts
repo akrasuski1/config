@@ -1,0 +1,3 @@
+#PS1='\[\e[1;34m\][\u@\h \w]\λ\[\e[0m\] ' # blueish prompt
+#PS1='\[\e[4m\][\u@\h \w]\λ\[\e[0m\] ' # underlined prompt
+PS1='\[\e[38;5;229m\][\u@\h \w]λ\[\e[0m\] ' # yellowish prompt
