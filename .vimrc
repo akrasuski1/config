@@ -20,11 +20,11 @@ set number        " Enable line numbering
 set nowrap        " Disable wrapping
 set viminfo='100,<5000,s1000 " 100 - irrelevant, 
                              " 5000 lines maximum register size persistence,
-							 " 1000kB max persistence size
+                             " 1000kB max persistence size
 
 set t_Co=256      " 256 colors terminal
 hi CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guibg=NONE guifg=NONE
 set cursorline    " Make current line 'selected' using dark grey
 hi Visual cterm=reverse ctermbg=black
                   " Use black letters on colored background during visual
-				  " selection
+                  " selection
