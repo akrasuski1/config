@@ -12,6 +12,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " Plugin 'git://github.com/scrooloose/syntastic.git'
 " Plugin 'tomvanderlee/vim-kerboscript'
+Plugin 'git://github.com/rust-lang/rust.vim.git'
 
 Plugin 'git://github.com/Valloric/YouCompleteMe.git'
 let g:ycm_global_ycm_extra_conf='~/.vim/ycm_conf.py'
@@ -24,6 +25,11 @@ let g:ycm_path_to_python_interpreter='/usr/bin/python'
 hi YcmWarningSection ctermbg=58 " Yellow warnings
 hi YcmErrorSection ctermbg=52   " Red errors
 
+Plugin 'git://github.com/derekwyatt/vim-fswitch.git'
+au! BufEnter *.cpp let b:fswitchdst = 'hpp,h'
+au! BufEnter *.c let b:fswitchdst = 'h'
+au! BufEnter *.h let b:fswitchdst = 'cpp,c'
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 
@@ -35,7 +41,7 @@ set tabstop=4     " Tab character in text is 4 columns wide
 set softtabstop=4 " 4 columns are used after pressing Tab
 set shiftwidth=4  " >> and << use 4 columns
 set noexpandtab   " Use tabs, not spaces
-set cindent       " Use C-like indentation
+" set cindent       " Use C-like indentation
 filetype plugin indent on " Same, but specialized for languages
 set mouse=a       " Enable mouse usage
 set number        " Enable line numbering
@@ -49,9 +55,26 @@ set ttimeoutlen=100  " Make escape sequences timeout 100ms.
 set undofile         " Save undo history for files even after
 set undodir=~/.vim/undohist " closing them in .vim directory.
 
+function! ToggleDumb()
+	if &mouse == 'a'
+		set mouse=
+		set paste
+		set nonumber
+	else
+		set mouse=a
+		set nopaste
+		set number
+	endif
+endfunc
 
 " Keys:
-set pastetoggle=<F2> " Toggle set paste using F2
+"set pastetoggle=<F2> " Toggle set paste using F2
+map  <F2> <ESC>:call ToggleDumb()<CR>
+imap <F2> <ESC>:call ToggleDumb()<CR>i
+map  <F3> <ESC>:FSHere<CR>
+imap <F3> <ESC>:FSHere<CR>i
+map  <F4> <ESC>:!make && make test<CR>
+imap <F4> <ESC>:!make && make test<CR>
 
 au BufRead,BufNewFile *.ks set filetype=kerboscript
 au BufRead,BufNewFile *.reverse set filetype=reverse
@@ -68,4 +91,3 @@ let c_no_curly_error=1
                   " Make the mp[{1,1}] syntax correct in C++11
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
                   " Start where you left off.
-
