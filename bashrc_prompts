@@ -1,3 +1,20 @@
 #PS1='\[\e[1;34m\][\u@\h \w]\λ\[\e[0m\] ' # blueish prompt
 #PS1='\[\e[4m\][\u@\h \w]\λ\[\e[0m\] ' # underlined prompt
 PS1='\[\e[38;5;229m\][\u@\h \w]λ\[\e[0m\] ' # yellowish prompt
+
+
+red='\[\e[0;31m\]'
+RED='\[\e[1;31m\]'
+blue='\[\e[0;34m\]'
+BLUE='\[\e[1;34m\]'
+cyan='\[\e[0;36m\]'
+CYAN='\[\e[1;36m\]'
+green='\[\e[0;32m\]'
+GREEN='\[\e[1;32m\]'
+yellow='\[\e[0;33m\]'
+YELLOW='\[\e[1;33m\]'
+PURPLE='\[\e[1;35m\]'
+purple='\[\e[0;35m\]'
+nc='\[\e[0m\]'
+PS1="$YELLOW\t $PURPLE\u$nc@$CYAN\H$nc:$GREEN\w$nc\\n$GREENλ$nc "
+# ^ MX-style, with lambda and time
